@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Key Code</title>
+</head>
+<body>
+
+<style>
+    body {
+        background: dimgrey;
+    }
+    section {
+        position: relative;
+        float: left;
+
+    }
+    #f_list--wrapper{
+        float: left;
+        font-size: 1.1rem;
+        box-sizing: border-box;
+        border: 2px solid darkgray;
+        background: gray;
+
+    }
+    ul {
+        padding: 10px;
+        margin: 0;
+    }
+    li{
+        list-style: none;
+        padding: 2px;
+        margin: 0px;
+        list-style-position: inside;
+        color: lightgray;
+        font-style: italic;
+    }
+    span.val{
+        color: white;
+        font-weight: 500;
+        font-style: normal;
+    }
+    div {
+        float: right;
+        color: lightgray;
+        padding-right:20vw;
+        font-size: 50vw;
+        display: inline-block;
+    }
+</style>
+
+
+<h1>Press a key ...</h1>
+
+<section id="f_list--wrapper">
+
+</section>
+
+<script>
+    (function () {
+        let elemList = [
+                'key',
+                'keyCode',
+                'code',
+                'charCode',
+                'keyIdentifier',
+                'composed',
+                'isComposing',
+                'shiftKey',
+                'ctrlKey',
+                'altGraphKey',
+                'altKey',
+                'keyLocation',
+                'layerX',
+                'layerY',
+                'which'
+            ],
+            target = document.querySelector('#f_list--wrapper')
+        newElemwrapper = document.createElement('ul')
+        ;
+        let keyCode = document.createElement('div');
+
+
+        document.addEventListener('keydown', function(event)  {
+            //console.log(event.key + " - " + event.keyCode);
+            //console.log (event);
+            newElemwrapper.innerHTML = '';
+
+            elemList.forEach((element, index, array) => {
+
+                let newElemToAdd = document.createElement('li'),
+                newElemContent = '';
+
+            newElemContent = "<span>" + element + "</span> : <span class='val'>" + event[element] +"</span>";
+            newElemToAdd.innerHTML = newElemContent
+            newElemwrapper.appendChild(newElemToAdd);
+        });
+
+            target.appendChild(newElemwrapper);
+
+
+            keyCode.innerHTML = event['keyCode'];
+            target.parentNode.insertBefore( keyCode, target );
+
+        });
+    })();
+</script>
+
+
+</body>
+</html>
